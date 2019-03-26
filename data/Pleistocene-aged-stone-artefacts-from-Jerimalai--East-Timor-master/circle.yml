@@ -1,0 +1,28 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t benmarwick/jerimalaistoneartefacts https://raw.githubusercontent.com/benmarwick/Pleistocene-aged-stone-artefacts-from-Jerimalai--East-Timor/master/docker/Dockerfile
+
+test:
+  override:
+    - docker run --name jerimalaistoneartefacts -d -p 8787:8787 benmarwick/jerimalaistoneartefacts; sleep 10
+    - curl --retry 10 --retry-delay 5 -v http://localhost:8787
+    - sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" jerimalaistoneartefacts)" -- Rscript -e "list.files(path =  '/')"
+    - sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" jerimalaistoneartefacts)" -- Rscript -e "list.files(path =  '/home/')"
+    - sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" jerimalaistoneartefacts)" -- Rscript -e "list.files(path =  '/home/rstudio')"
+
+    # render main manuscript file in container...
+    # - sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" jerimalaistoneartefacts)" -- Rscript -e "rmarkdown::render('/home/rstudio/Pleistocene-aged-stone-artefacts-from-Jerimalai--East-Timor/manuscript/supplement.Rmd')"
+
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push benmarwick/jerimalaistoneartefacts
+

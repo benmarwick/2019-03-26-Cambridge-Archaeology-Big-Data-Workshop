@@ -1,0 +1,18 @@
+Square,Spit,Type,t1,T1,t2,T2,t3,T3,length,perimeter,0.5,1,Type,Kuhn,%,II
+B,25,Bifacial End,5.24,13.31,5.75,15.4,5.04,14.82,13.89,80,1,1,Bifacial End,0.37,17.36,0.09
+B,10,Side,3.03,6.63,2.14,6.39,2.07,6.47,15.86,85,3,,Side,0.37,18.66,0.09
+A,43,Bec,2.7,7.55,3.46,7.43,4.9,6.61,18,61,1,2,Bec,0.52,29.51,0.16
+B,12,Drill?,4.83,9.94,4.41,9.31,4.57,6.64,25,58,6,,Drill?,0.55,43.1,0.19
+B,39,Concave Bifacial side and end,10.63,15.08,12.24,13.23,7.66,10.06,80,133,2,8,Concave Bifacial side and end,0.8,60.15,0.56
+B,5,Side Ventral,,,,,,,8,67,2,,Side Ventral,,11.94,0.06
+B,4,Double side and end (steep edged),9.18,14.87,15.1,14.95,13.22,15.37,45,90,1,4,Double side and end (steep edged),0.83,50,0.28
+B,34,Side and End (Alternating bifacial),2.44,6.69,3.14,7.08,2.26,7.08,35,124,4,,Side and End (Alternating bifacial),0.38,28.23,0.13
+B,40,Side,1.42,6.28,1.47,5.41,1.05,3.83,16.41,77,3,,Side,0.26,21.31,0.09
+B,3,Ventral Side,,,,,,,40,90,5,,Ventral Side,,44.44,0.16
+B,10,End,2.48,3.88,2.94,7.14,2.61,7.79,6.49,55,1,,End,0.46,11.8,0.03
+B,14,Notch,2.32,8.25,6.03,7.96,7.36,8.85,12,60,1,1,Notch,0.62,20,0.09
+B,19,Denticulate,1.03,4.43,0.67,4.87,1.17,5.63,15.5,56,5,,Denticulate,0.19,27.68,0.16
+B,38,Notch (Ventral),,,,,,,11.53,79,2,,Notch (Ventral),,14.59,0.06
+B,3,Side and End,2.86,9.38,2.95,7.54,4.11,7.14,31.57,110,5,,Side and End,,28.7,0.16
+B,22,Notch (Ventral),,,,,,,28.48,70,1,1,Notch (Ventral),,40.69,0.09
+B,4,Double Side,6.38,11.42,8.24,8.19,11.02,11.02,38,115,11,,Double Side,,33.04,0.34

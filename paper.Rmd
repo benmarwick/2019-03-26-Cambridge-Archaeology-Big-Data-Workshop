@@ -1,0 +1,125 @@
+---
+title: "A Brief Introducton to Archaeological Data Carpentry"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+
+We are going to do three things:
+
+1. Learn the basics of R Markdown and knitting a document
+2. Learn the basics of five main verbs of data manipulation
+3. Learn the basics of four common types of data visualisation 
+
+We will use packages in the tidyverse, a set of R packages for data science. All packages share an underlying design philosophy, grammar, and data structures: https://www.tidyverse.org/
+
+If you want to browse more packages that are useful for archaeology, we have a list here: https://github.com/benmarwick/ctv-archaeology
+
+# Getting the data
+
+We will download some real archaeological data that has been published in this journal article: 
+
+> Marwick, Ben, et al. "Early modern human lithic technology from Jerimalai, East Timor." _Journal of Human Evolution_ 101 (2016): 45-64. https://doi.org/10.1016/j.jhevol.2016.09.004
+
+The data have been deposites on Figshare.com, a major multi-disciplinary data repository (free to use).
+
+In this chunk below we will:
+
+1. download the data in a zip file
+2. unzip this zip file to access the individual files
+3. delete the zip file
+ 
+```{r cache=TRUE}
+# get data from the public repository
+download.file("https://ndownloader.figshare.com/files/6042231",
+              destfile = "data/Marwick-et-al_2016-JHE.zip")
+
+# unzip the downloaded zip file so we can access the individual files 
+unzip("data/Marwick-et-al_2016-JHE.zip",
+      exdir = "data")
+
+# delete the zip file
+unlink("data/Marwick-et-al_2016-JHE.zip")
+```
+
+Now the data have been downloaded onto our hard drive, we can load one spreadsheet into our current R session to begin working on it:
+
+```{r message=FALSE, warning=FALSE}
+# load the packages of the tidyverse
+library(tidyverse)
+
+# load the data
+jerimalai_lithics_square_a <- 
+  read_csv("data/Pleistocene-aged-stone-artefacts-from-Jerimalai--East-Timor-master/manuscript/data/Jerimalai_All_Artefacts_Square_A.csv")
+```
+
+# Five Main Verbs for Data Manipulation
+
+We are use the dplyr package from the tidyverse. It has an awesome cheat-sheet here: https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+
+## Filter
+
+```{r}
+
+```
+
+## Mutate
+
+```{r}
+
+```
+
+## Arrange
+
+```{r}
+
+```
+
+## Summarise
+
+```{r}
+
+```
+
+## Group by
+
+```{r}
+
+```
+
+# Four Common Types of Data Visualisation 
+
+Here we are using the ggplot2 package, here's the cheatsheet: https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
+
+## Histogram
+
+```{r}
+
+```
+
+## Bar plot
+
+```{r}
+
+```
+
+## Boxplot
+
+```{r}
+
+```
+
+## Scatterplot
+
+```{r}
+
+```
+
+How to save a plot as an image file?
+
+
+

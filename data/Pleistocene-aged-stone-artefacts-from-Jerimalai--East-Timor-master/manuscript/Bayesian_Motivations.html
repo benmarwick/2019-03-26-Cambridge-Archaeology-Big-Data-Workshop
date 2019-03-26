@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="date" content="2016-09-05" />
+
+<title>Motivations for the Bayesian approach used in the Jeremalai paper</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Motivations for the Bayesian approach used in the Jeremalai paper</h1>
+<h4 class="author"><em>Ben Marwick</em></h4>
+<a class="author_email" href="mailto:#"><a href="mailto:bmarwick@uw.edu">bmarwick@uw.edu</a></a>
+</address>
+<h4 class="date"><em>2016-09-05</em></h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">0.1</span> Introduction</a></li>
+<li><a href="#bayesian-one-way-anova-and-bayesian-poisson-exponential-anova"><span class="toc-section-number">0.2</span> Bayesian one-way ANOVA and Bayesian Poisson exponential ANOVA</a><ul>
+<li><a href="#references"><span class="toc-section-number">0.2.1</span> References</a></li>
+</ul></li>
+<li><a href="#colophon"><span class="toc-section-number">1</span> Colophon</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">0.1</span> Introduction</h2>
+<p>Statistical tests for this study were conducted using the Bayesian framework described in Krushcke (2011). Bayesian statistics are familiar to archaeologists in the context of radiocarbon dating because they provide formal methods for improving the calibration of radiocarbon ages by combining them with other data, such as stratigraphic information, that give additional constraints to the chronological order of the dated samples (Ramsey, 2009). Beyond calibrating radiocarbon dates, there have been very few applications of Bayesian methods of statistical inference in archaeology (Buck and Litton, 1990a; Buck and Litton, 1990b; Buck et al., 1996; Dellaportas, 1998; Gowland and Chamberlain, 2002; Halekoh and Vach, 2004). Due to the rarity of Bayesian inference in archaeology more broadly, we present here an extended discussion to motivate its use in place of the classical Null Hypothesis Significance Tests (NHST). These classical tests, such as the t-test, chi-square and ANOVA, are based on frequentist inference, and are very common in the archaeological literature.</p>
+<p>Although frequentist inference dominates the archaeological literature, we were motivated to explore alternatives by several concerns. Serious disadvantages of the frequentist approach have been identified in other disciplines over recent decades (some of the circa 500 publications on this topic include: Guttman, 1985; Cohen, 1994; Schmidt, 1996; Gill, 1999; Johnson, 1999; Nickerson, 2000; Stephens et al., 2007; Wagenmakers, 2007; Lambdin, 2012). The catalog of problems and misunderstandings surrounding the use of NHST is extensive, so we here we only briefly review some of the most frequently noted objections before describing how Bayesian methods provide options for avoiding these problems in our specific case.</p>
+<p>Many of the criticisms focus on misuse of the <em>p</em>-values that are generated by NHST methods (Halsey et al., 2015). For example, lower <em>p</em>-values are sometimes interpreted as indicating greater significance (an effect size statistic is necessary to obtain this information; Gliner et al., 2002). Further misunderstandings include that the <em>p</em>-value gives the odds that a research hypothesis is correct, that a result will replicate, that the null hypothesis is true, and that statistical significance indicated by the <em>p</em>-value is equivalent to scientific significance (Carver, 1993; Cohen, 1994; Lambdin, 2012). Even when the NHST results are interpreted correctly, others have pointed out that NHST are often under-powered, and that small differences in estimates of population parameters from large samples, no matter how scientifically insignificant, will yield significant NHST results (Nix and Barnette, 1998; Johnson, 1999). While some of these problems can be mitigated by including related statistical measures (such as effect sizes and confidence intervals), there have been claims that researchers should abandon NHST as a method of statistical inference (Loftus, 1996) or be forbidden from using them in publication (Shrout, 1997; Fidler et al., 2004).</p>
+<p>Although several alternatives exist to frequentist inference, our choice of a Bayesian approach is motivated by its suitability to the specific details of this analysis. We were especially motivated by the relative conceptual and computational simplicity of conducting Bayesian analyses, compared to the alternatives (ie. likelihood-based statistics, and Akaikean-Information Criterion-based statistics). It is noteworthy that among philosophers of science, both supporters and critics consider Bayesianism to be dominant view in their field, and the paradigm has been central to recent developments in disciplines such as philosophy, statistics, ecology, and computer science (Bandyopadhyay and Forster, 2009).</p>
+<p>There are two specific details of this analysis that are relevant to our choice of a Bayesian approach. First is that Bayesian methods generally provide a more coherent basis for working with data from non-repeatable events such as an archaeological excavation (compared to, for example agricultural field trials, cf. Fisher, 1921). Bayesian methods use the data at hand to produce posterior probability statements about distributions of parameters and hypotheses (Puga et al., 2015). NHST procedures do the reverse, computing the probability of an event as a point value indicating its relative frequency of occurrence in an infinite sequence of repeated experiments. In this way, NHST methods use a null hypothesis to assess the plausibility of the observed data (and more ‘extreme’ data sets that were not observed but might have been with additional sampling or experiments), with another step of reasoning required to either reject or fail to reject the null hypothesis (Jackman, 2009). This means that Bayesian inference is based on the actual occurring data, not all possible data sets that might have occurred in an infinite number of hypothetical repetitions of the study (Bolstad, 2007). We consider Bayesian inference to be a conceptually simpler and more direct approach where we compute the probability of our hypotheses, not our data, as the NHST framework does.</p>
+<p>Although Bayesian methods have intuitive appeal, they have been criticized as subjective and arbitrary because typically the analyst must choose a prior distribution over the unknown parameters (e.g. mean, standard deviation, etc.) of the model to capture their beliefs about the situation before working with the data. Once the data are collected, Bayes’ rule is used to combine the prior distribution with the data to compute a posterior distribution of the unknown parameters. Most current applications formalize the choice of prior distributions by either following expert recommendations, estimating the distribution from the observed data (known as an empirical Bayesian approach, Carlin and Louis, 2011), using pre-existing data sets to generate priors (Anholt et al., 2000; McCarthy and Masters, 2005; Carlin and Louis, 2011), or using uninformative or weakly informative prior distributions (such as the uniform distribution) that do not give strong prior probability to any hypotheses about the data (Burnham and Anderson, 2002; Efron, 2013). We describe our choice of prior and likelihood functions in the methods section below. We also have made freely available all the raw data and R programming code used to compute the analyses presented here, to facilitate close inspection and reuse of our quantitative methods.</p>
+</div>
+<div id="bayesian-one-way-anova-and-bayesian-poisson-exponential-anova" class="section level2">
+<h2><span class="header-section-number">0.2</span> Bayesian one-way ANOVA and Bayesian Poisson exponential ANOVA</h2>
+<p>We used two types of Bayesian methods, a one-way ANOVA for comparing groups of metric data (such as artefact measurements over different phases of occupation, where an ANOVA is the common NHST), and a Poisson exponential ANOVA for contingency table analysis (such as artefact counts, where a chi-square is the common NHST). Our supplementary information includes further discussion of the motivation for using a Bayesian approach, as well as an R package that makes these methods available for use with other datasets. For an extended technical description and graphical models of these methods, see Krushcke (2011). Our Bayesian one-way ANOVA takes the metric predicted variable (e.g. artefact length or mass) and considers how it is deflected by each of the nominally scaled predictor variables (e.g. depositional phase). These deflection parameters are the primary interest, and following Gelman (2005, 2006) we apply a hierarchical (or multilevel) model with a folded-t prior distribution (because it does not have infinite density near zero, so it behaves well when group-level variance is at or near zero) on the standard deviation, a uniform (or flat) distribution on the variance between levels (as an uninformative prior) and a fat-tailed normal distribution on the likelihood (to better accommodate outliers in the data). The parameters of these distributions are derived from the observed data. The combination of the specific types of prior distributions used here, and that their parameters come from the observed data, mean that this Bayesian ANOVA uses weakly informative priors that are not intended to represent our actual prior state of knowledge (which is small in this case) but rather to constrain the posterior distribution, to an extent allowed by the data (Gelman 2006).</p>
+<p>For the contingency table analysis, a Poisson likelihood distribution is used as an exponential link function from an underlying ANOVA model. The term ‘ANOVA’ does not imply groups of a nominal measurement variable in our observed data (which are counts in this case). Instead it refers to the general ANOVA-like approach of comparing the distributions of cell frequencies that we produce when predicting the cell frequencies. Where the chi-square computes a single estimated value per cell of the table, the Bayesian approach generates a distribution of values for each cell of the table. Comparing these distributions is analogous to two-way ANOVA, and investigating the relationships within and between variables in the table is analogous to main effects and interaction contrasts in ANOVA. The Poisson distribution is well-suited as the likelihood function for count data because it returns only non-negative integer values and is widely used to model discrete occurrences in time or across space (Sadiku and Tofighi, 1999; Jackman, 2009). This method also uses the folded-t prior, like the one-way ANOVA above, and thus has a weakly informative prior that reflects our low degree of prior knowledge about these assemblages.</p>
+<p>To obtain a result from these tests we computed the posterior distributions, or evaluated the outcome of combining the data with our beliefs about the processes that produced the data (weakly held, in this case, so that the data contribute much more information than the prior about the parameters of the posterior). The general process of obtaining the posterior distributions is to combine, or integrate, the prior and likelihood distributions. We used Markov chain Monte Carlo (MCMC) methods to approximate the integral by taking a very large number of independent samples from the distributions to approximate the distribution of the product of the prior and the likelihood. From this approximated distribution we computed descriptive statistics of the posterior distribution to interpret the substantive significance of the output.</p>
+<p>Our results from these Bayesian tests are reported here as highest probability density intervals (HDIs), with more extensive output presented in the SOM. The HDI is the range of values that contain 95% of the values in the posterior distribution produced by the MCMC sampling. Our supplementary materials also includes the equivalent null-hypothesis-significance-test for direct comparison by readers who are unfamiliar with Bayesian tests. The SOM also includes the raw data used for all tests so that others may reuse the measurements in their own tests and combine with other datasets.</p>
+<div id="references" class="section level3">
+<h3><span class="header-section-number">0.2.1</span> References</h3>
+<p>Anholt, B.R., Werner, E., Skelly, D.K., 2000. Effect of food and predators on the activity of four larval ranid frogs. Eco. 81, 3509-3521.</p>
+<p>Bandyopadhyay, P., Forster, M., 2009. Introduction to the Philosophy of Statistics, Handbook for the Philosophy of Science: Philosophy of Statistics. Elsevier, Amsterdam, pp. 1-50.</p>
+<p>Bolstad, W.M., 2007. Introduction to Bayesian statistics. John Wiley &amp; Sons, New York.</p>
+<p>Buck, C., Litton, C., 1990a. A computational Bayes approach to some common archaeological problems, Proceedings of the 2002 Computer Applications in Archaeology Conference, <a href="http://proceedings.caaconference.org/files/1990/15_Buck_Litton_CAA_1990.pdf" class="uri">http://proceedings.caaconference.org/files/1990/15_Buck_Litton_CAA_1990.pdf</a>.</p>
+<p>Buck, C.E., Litton, C., 1990b. A computational Bayes approach to some common archaeological problems. Comp. Apps. and Quant. Meth. in Arch., 93-99.</p>
+<p>Buck, C.E., Cavanagh, W.G., Litton, C.D., 1996. Bayesian Approach to Interpreting Archaeological data. Wiley Chichester England.</p>
+<p>Burnham, K.P., Anderson, D.R., 2002. Model Selection and Multimodel Inference: A Practical Information-Theoretic Approach. Springer-Verlag, New York.</p>
+<p>Carlin, B.P., Louis, T.A., 2011. Bayesian Methods for Data Analysis. CRC Press.</p>
+<p>Carver, R.P., 1993. The case against statistical significance testing, revisited. J. Exper. Edu. 61, 287-292.</p>
+<p>Cohen, J., 1994. The earth is round (p &lt;. 05). Am. Psych. 49, 997-1003.</p>
+<p>Dellaportas, P., 1998. Bayesian classification of neolithic tools. Appl. Stat. 47, 279-297.</p>
+<p>Efron, B., 2013. Bayes’ theorem in the 21st century. Science 340, 1177-1178.</p>
+<p>Fidler, F., Geoff, C., Mark, B., Neil, T., 2004. Statistical reform in medicine, psychology and ecology. The J. of Socio-Economics 33, 615-630.</p>
+<p>Fisher, R.A., 1921. Studies in crop variation. I. An examination of the yield of dressed grain from Broadbalk. The Journal of Ag. Sci. 11, 107-135.</p>
+<p>Gelman, A. (2005). Analysis of variance—why it is more important than ever. The Annals of Statistics 33(1), 1-53.</p>
+<p>Gelman, A. (2006). “Prior distributions for variance parameters in hierarchical models (comment on article by Browne and Draper).” Bayesian Anal. 1(3), 515-534.</p>
+<p>Gill, J., 1999. The insignificance of null hypothesis significance testing. Pol. Res. Qtly 52, 647-674.</p>
+<p>Gliner, J.A., Leech, N.L., Morgan, G.A., 2002. Problems with null hypothesis significance testing (NHST): what do the textbooks say? The J. of Exp. Edu. 71, 83-92.</p>
+<p>Gowland, R.L., Chamberlain, A.T., 2002. A Bayesian approach to ageing perinatal skeletal material from archaeological sites: implications for the evidence for infanticide in Roman-Britain. J. Archaeol. Sci. 29, 677-685.</p>
+<p>Guttman, L., 1985. The illogic of statistical inference for cumulative science. Appl. Stoch. Mod. and Data Anal. 1, 3-9.</p>
+<p>Halekoh, U., Vach, W., 2004. A Bayesian approach to seriation problems in archaeology. Comp.Stats. &amp; Data Anal. 45, 651-673.</p>
+<p>Halsey, L.G., Curran-Everett, D., Vowler, S.L., Drummond, G.B., 2015. The fickle P value generates irreproducible results. Nature Methods 12, 179-185.</p>
+<p>Jackman, S., 2009. Bayesian Analysis for the Social Sciences. John Wiley &amp; Sons, Melbourne.</p>
+<p>Johnson, D.H., 1999. The insignificance of statistical significance testing. The J. of Wildlife Mngmt 63, 763-772.</p>
+<p>Krushcke, J.K., 2011. Doing Bayesian Data Analysis: A Tutorial with R and BUGS. Academic Press, New York.</p>
+<p>Lambdin, C., 2012. Significance tests as sorcery: Science is empirical—significance tests are not. Theory &amp; Psychology 22, 67-90.</p>
+<p>Loftus, G.R., 1996. Psychology will be a much better science when we change the way we analyze data. Curr. Dir. in Psych. Sci. 5, 161-171.</p>
+<p>McCarthy, M.A., Masters, P.I.P., 2005. Profiting from prior information in Bayesian analyses of ecological data. J. of Appl. Eco. 42, 1012-1019.</p>
+<p>Nickerson, R.S., 2000. Null hypothesis significance testing: A review of an old and continuing controversy. Psych. Meth. 5, 241-301.</p>
+<p>Nix, T.W., Barnette, J.J., 1998. The data analysis dilemma: Ban or abandon. A review of null hypothesis significance testing. Research in the Schools 5, 3-14.</p>
+<p>Puga, J.L., Krzywinski, M., Altman, N., 2015. Points of significance: Bayesian statistics. Nature Methods 12, 377-378.</p>
+<p>Ramsey, C.B., 2009. Bayesian analysis of radiocarbon dates. Radiocarbon 51, 337–360.</p>
+<p>Reimer, P.J., Bard, E., Bayliss, A., Beck, J.W., Blackwell, P.G., Ramsey, C.B., Buck, C.E., Cheng, H., Edwards, R.L., Friedrich, M., 2013. IntCal13 and Marine13 radiocarbon age calibration curves 0–50,000 years cal BP. Radiocarbon 55, 1869-1887.</p>
+<p>Sadiku, M.N.O. Tofighi, M.R. 1999. A tutorial on simulation of queueing models. Intl. J. of Elect. Engin. Edu. 36, 102-120.</p>
+<p>Schmidt, F.L., 1996. Statistical significance testing and cumulative knowledge in psychology: Implications for training of researchers. Psych. Meth. 1, 115.</p>
+<p>Shrout, P.E., 1997. Should significance tests be banned? Introduction to a special section exploring the pros and cons. Psych. Sci. 8, 1-2.</p>
+<p>Stephens, P.A., Buskirk, S.W., del Rio, C.M., 2007. Inference in ecology and evolution. Trends in Eco. &amp; Evo. 22.4 (2007): 192-197.</p>
+<p>Trafimow, D., Marks, M., 2015. Editorial. Basic and Applied Social Psychology 37, 1-2.</p>
+<p>Wagenmakers, E.-J., 2007. A practical solution to the pervasive problems of p values. Psycho. Bull. &amp; Rev. 14, 779-804.</p>
+</div>
+</div>
+<div id="colophon" class="section level1">
+<h1><span class="header-section-number">1</span> Colophon</h1>
+<p>This report was generated on 2016-09-05 09:35:29 using the following computational environment and dependencies:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># which R packages and versions?</span>
+<span class="kw">sessionInfo</span>()</code></pre></div>
+<pre><code>## R version 3.3.1 (2016-06-21)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## 
+## locale:
+## [1] LC_COLLATE=English_Australia.1252  LC_CTYPE=English_Australia.1252   
+## [3] LC_MONETARY=English_Australia.1252 LC_NUMERIC=C                      
+## [5] LC_TIME=English_Australia.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] magrittr_1.5       assertthat_0.1     formatR_1.4       
+##  [4] tools_3.3.1        htmltools_0.3.5    yaml_2.1.13       
+##  [7] tibble_1.1         Rcpp_0.12.6        stringi_1.1.1     
+## [10] rmarkdown_1.0.9013 knitr_1.14         stringr_1.0.0     
+## [13] digest_0.6.10      evaluate_0.9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># what commit is this file at?</span>
+<span class="kw">library</span>(git2r)
+repo &lt;-<span class="st"> </span><span class="kw">repository</span>(<span class="dt">path =</span> <span class="st">&quot;../&quot;</span>)
+last_commit &lt;-<span class="st"> </span><span class="kw">commits</span>(repo)[[<span class="dv">1</span>]]</code></pre></div>
+<p>The current git commit of this file is 07f2da099df9ecc6a7b432088485827853c2d38f, which is on the master branch and was made by Ben Marwick on 2016-09-04 23:39:37. The current commit message is “don’t move to home”.</p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
