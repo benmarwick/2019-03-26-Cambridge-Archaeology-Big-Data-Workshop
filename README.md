@@ -6,7 +6,7 @@ The goal of this repository is to provide materials for the Data Carpentry secti
 ## How to download these materials
 
 ```
-usethis::use_course("bit.ly/usethis-shortlink-example")
+usethis::use_course("bit.ly/big-data-in-archy")
 ```
 
 ## About the intructor 
