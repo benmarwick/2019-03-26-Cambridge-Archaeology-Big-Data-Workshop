@@ -5,8 +5,10 @@ The goal of this repository is to provide materials for the Data Carpentry secti
 
 ## How to download these materials
 
+This line of code will download this repository to your desktop. Please run this line, and watch your console for prompts:
+
 ```
-usethis::use_course("bit.ly/big-data-in-archy")
+usethis::use_course("bit.ly/big-data-in-arch")
 ```
 
 ## About the intructor 
