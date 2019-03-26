@@ -1,3 +1,5 @@
+![](conf-banner.png)
+
 # Data Carpentry Workshop materials for the conference ["Big Data in Archaeology: Practicalities and Possibilities"](https://erikgjesfjeld.wixsite.com/big-data-archaeology)
 
 
@@ -5,7 +7,7 @@ The goal of this repository is to provide materials for the Data Carpentry secti
 
 ## How to download these materials
 
-This line of code will download this repository to your desktop. Please run this line, and watch your console for prompts:
+This line of code will download this repository to your desktop. Please run this line, and watch your console for prompts (answer 'yes' to everything):
 
 ```
 usethis::use_course("bit.ly/big-data-in-arch")
