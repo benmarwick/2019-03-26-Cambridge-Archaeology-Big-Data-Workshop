@@ -10,7 +10,7 @@ The goal of this repository is to provide materials for the Data Carpentry secti
 This line of code will download this repository to your desktop. Please run this line, and watch your console for prompts (answer 'yes' to everything):
 
 ```
-usethis::use_course("bit.ly/big-data-in-arch")
+usethis::use_course("bit.ly/big-data-in-arch", getwd())
 ```
 
 ## About the intructor 
